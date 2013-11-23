@@ -1,9 +1,32 @@
-import datetime
+import datetime, time
 
 class Controller:
     __config=None
-    def __init__(self, config):
+    __isOn=None
+    __relay=None
+    __feed=None
+    def __init__(self, config, relay, feed):
         self.__config = config
+        self.__relay = relay
+        self.__feed = feed
+
+    def processCircuitPower(self):
+        if self.shouldBeOnAt(time.strftime('%H:%M')):
+            self.__isOn=True
+            self.__relay.r1(True)
+        else:
+            self.__isOn=False
+            self.__relay.r1(False)
+
+    def processLampColor(self):
+        if not self.__isOn:
+            return
+
+        self.__feed.process()
+        if self.__feed.hasFailures():
+            self.__relay.r2(True)
+        else:
+            self.__relay.r2(False)
 
 
     def shouldBeOnAt(self, timeHHMM):

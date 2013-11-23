@@ -21,5 +21,12 @@ def getFeedData():
 	c.perform()
 
 
-getFeedData()
+
+class Feed:
+    __config=None
+    def __init__(self, config):
+        self.__config=config
+
+    def process(self):
+        pass
 
