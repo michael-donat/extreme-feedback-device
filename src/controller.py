@@ -18,6 +18,8 @@ class Controller:
             self.__isOn=False
             self.__relay.r1(False)
 
+        return self.__isOn
+
     def processLampColor(self):
         if not self.__isOn:
             return
@@ -27,6 +29,8 @@ class Controller:
             self.__relay.r2(True)
         else:
             self.__relay.r2(False)
+
+        return not self.__feed.hasFailures()
 
 
     def shouldBeOnAt(self, timeHHMM):
