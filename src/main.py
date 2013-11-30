@@ -3,6 +3,8 @@ __author__ = 'thornag'
 from controller import Controller
 from ConfigParser import ConfigParser
 from relay import Relay
+import time
+
 import feed
 
 cnf = ConfigParser()
@@ -12,15 +14,14 @@ ctrl = Controller(cnf, Relay(cnf), feed.Bamboo(cnf))
 bStatus = ctrl.processCircuitPower()
 
 if bStatus:
-    print 'Circuit...   ON'
 
     bStatus = ctrl.processLampColor()
 
     if bStatus:
-        print 'Color...     BLUE'
+        print time.strftime('%H:%M:%S Circuit...   ON, Color...     BLUE')
     else:
-        print 'Color...     RED'
+        print time.strftime('%H:%M:%S Circuit...   ON, Color...     RED')
 
 else:
-    print 'Circuit...   OFF'
+     print time.strftime('%H:%M:%S Circuit...   OFF')
 

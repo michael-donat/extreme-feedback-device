@@ -41,9 +41,35 @@ class Relay:
     __config=None
     def __init__(self, config):
         self.__config=config
+        pass
+
+    def device(self, **kwargs):
+        return usb.core.find(**kwargs)
+
+    def interface(self, dev):
+
+        if dev is None:
+            sys.exit("No Panic button found in the system");
+
+        try:
+            if dev.is_kernel_driver_active(0) is True:
+                dev.detach_kernel_driver(0)
+        except usb.core.USBError as e:
+            sys.exit("Kernel driver won't give up control over device: %s" % str(e))
+
+        try:
+            dev.set_configuration()
+            dev.reset()
+        except usb.core.USBError as e:
+            sys.exit("Cannot set configuration the device: %s" % str(e))
+
+        endpoint = dev[0][(0,0)][0]
+
+        return endpoint
 
     def r1(self, isOn):
         pass
 
     def r2(self, isOn):
         pass
+
