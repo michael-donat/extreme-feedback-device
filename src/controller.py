@@ -13,10 +13,10 @@ class Controller:
     def processCircuitPower(self):
         if self.shouldBeOnAt(time.strftime('%H:%M')):
             self.__isOn=True
-            self.__relay.r1(True)
+            self.__relay.powerOn()
         else:
             self.__isOn=False
-            self.__relay.r1(False)
+            self.__relay.powerOff()
 
         return self.__isOn
 
@@ -26,9 +26,9 @@ class Controller:
 
         self.__feed.process()
         if self.__feed.hasFailures():
-            self.__relay.r2(True)
+            self.__relay.failLight()
         else:
-            self.__relay.r2(False)
+            self.__relay.passLight()
 
         return not self.__feed.hasFailures()
 
