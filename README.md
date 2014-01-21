@@ -30,9 +30,9 @@ The second relay is responsible for swapping light colour. Depending on whether 
 
 Above is illustrated by wiring and sequence diagrams below:
 
-(https://raw2.github.com/thornag/extreme-feedback-device/master/resources/relay_algorithm.png)
+![sequence](https://raw2.github.com/thornag/extreme-feedback-device/master/resources/relay_algorithm.png)
 
-(https://raw2.github.com/thornag/extreme-feedback-device/master/resources/simple_wiring.png)
+![wiring](https://raw2.github.com/thornag/extreme-feedback-device/master/resources/simple_wiring.png)
 
 
 
