@@ -1,7 +1,7 @@
 extreme-feedback-device
 =======================
 
-A little project to construct Raspberry Pi based XFD with interface to read Atlassian Bamboo and Jenkins feed. I wrote a blog post on how to construct one [here](http://thornag.github.io/blog/).
+A little project to construct Raspberry Pi based XFD with interface to read Atlassian Bamboo and Jenkins feed. I wrote a blog post on how to construct one [here](http://thornag.github.io/blog/development%20practices/2014/04/22/extreme-feedback-device/){:target="_blank"}.
 
 Dependencies (apart from python)
 --------------------------------
@@ -17,7 +17,7 @@ I also recommend running the RPi IPE OS. This will allow you to easily mount the
 Configuration
 -------------
 
-You will need to know which pins have been used to wire the relay - the numbers used are the pin numbers as listed by the RPi.GPIO library [here](http://openmicros.org/index.php/articles/94-ciseco-product-documentation/raspberry-pi/217-getting-started-with-raspberry-pi-gpio-and-python) - not chip or Pi numbers.
+You will need to know which pins have been used to wire the relay - the numbers used are the pin numbers as listed by the RPi.GPIO library [here](http://openmicros.org/index.php/articles/94-ciseco-product-documentation/raspberry-pi/217-getting-started-with-raspberry-pi-gpio-and-python){:target="_blank"} - not chip or Pi numbers.
 
 Installation and Running
 ------------------------
