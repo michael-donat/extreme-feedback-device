@@ -17,7 +17,7 @@ I also recommend running the RPi IPE OS. This will allow you to easily mount the
 Configuration
 -------------
 
-You will need to know which pins have been used to wire the relay - the numbers used are the numbers provided by GPIO library, not the chip or pin numbers.
+You will need to know which pins have been used to wire the relay - the numbers used are the pin numbers as listed by the RPi.GPIO library [here](http://openmicros.org/index.php/articles/94-ciseco-product-documentation/raspberry-pi/217-getting-started-with-raspberry-pi-gpio-and-python) - not chip or Pi numbers.
 
 Installation and Running
 ------------------------
