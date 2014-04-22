@@ -1,16 +1,12 @@
 __author__ = 'thornag'
 
-from controller import Controller
-from ConfigParser import ConfigParser
-from relay import Relay
-import sys, signal, time
+import sys, signal, time, ConfigParser
+import feed, relay, controller
 
-import feed
-
-cnf = ConfigParser()
+cnf = ConfigParser.ConfigParser()
 cnf.read('../config.ini')
 
-ctrl = Controller(cnf, Relay(cnf), feed.Jenkins (cnf))
+ctrl = controller.Controller(cnf, relay.Relay(cnf), feed.Jenkins (cnf))
 bCircuitStatus = ctrl.processCircuitPower()
 
 for sig in [signal.SIGTERM, signal.SIGINT, signal.SIGHUP, signal.SIGQUIT]:

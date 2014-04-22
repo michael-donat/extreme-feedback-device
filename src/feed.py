@@ -56,7 +56,8 @@ class Jenkins:
     def process(self):
         job =self.__jenkins[self.__jobName]
         lb = job.get_last_build()
-        self.__failures = lb.get_status() == 'FAILURE'
+        status = lb.get_status()
+        self.__failures = status == 'FAILURE' or status == 'ABORTED'
 
     def hasFailures(self):
         return self.__failures
