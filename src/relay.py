@@ -5,18 +5,22 @@ class Relay:
     def __init__(self, config):
         self.__config=config
         GPIO.setmode(GPIO.BOARD);
-        GPIO.setup(self.__config.get('Relay', 'powerPin'), GPIO.OUT)
-        GPIO.setup(self.__config.get('Relay', 'lightPin'), GPIO.OUT)
+        GPIO.setwarnings(False)
+        GPIO.setup(self.__config.getint('Relay', 'powerPin'), GPIO.OUT)
+        GPIO.setup(self.__config.getint('Relay', 'lightPin'), GPIO.OUT)
         pass
 
     def powerOn(self):
-        GPIO.output(self.__config.get('Relay', 'powerPin'), self.__config.get('Relay', 'powerOnValue'))
+        GPIO.output(self.__config.getint('Relay', 'powerPin'), self.__config.getboolean('Relay', 'powerOnValue'))
 
     def powerOff(self):
-        GPIO.output(self.__config.get('Relay', 'powerPin'), not self.__config.get('Relay', 'powerOnValue'))
+        GPIO.output(self.__config.getint('Relay', 'powerPin'), not self.__config.getboolean('Relay', 'powerOnValue'))
 
     def passLight(self):
-        GPIO.output(self.__config.get('Relay', 'lightPin'), self.__config.get('Relay', 'passValue'))
+        GPIO.output(self.__config.getint('Relay', 'lightPin'), self.__config.getboolean('Relay', 'passValue'))
 
     def failLight(self):
-        GPIO.output(self.__config.get('Relay', 'lightPin'), not self.__config.get('Relay', 'passValue'))
+        GPIO.output(self.__config.getint('Relay', 'lightPin'), not self.__config.getboolean('Relay', 'passValue'))
+
+    def cleanup(self):
+        GPIO.cleanup()

@@ -1,4 +1,4 @@
-import datetime, time
+import datetime, time, sys
 
 class Controller:
     __config=None
@@ -46,5 +46,7 @@ class Controller:
 
         return now >= onAt and now <= offAt
 
-
+    def cleanup(self, signum = None, frame = None):
+        self.__relay.cleanup();
+        sys.exit(0)
 

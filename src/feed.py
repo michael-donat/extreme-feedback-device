@@ -1,4 +1,4 @@
-import pycurl
+#import pycurl
 import sys
 import getopt
 import StringIO
@@ -41,3 +41,22 @@ class Bamboo:
     def hasFailures(self):
         return self.__failures
 
+class Jenkins:
+    __requester=None
+    __jenkins=None
+    __jobName=None
+    __failures=None
+    def __init__(self, config):
+        from jenkinsapi.jenkins import Jenkins
+        from jenkinsapi.utils.requester import Requester
+        self.__requester = Requester(config.get('Feed', 'user'), config.get('Feed', 'password'), False)
+        self.__jenkins = Jenkins(config.get('Feed', 'url'), config.get('Feed', 'user'), config.get('Feed', 'password'), self.__requester)
+        self.__jobName = config.get('Feed', 'job')
+
+    def process(self):
+        job =self.__jenkins[self.__jobName]
+        lb = job.get_last_build()
+        self.__failures = lb.get_status() == 'FAILURE'
+
+    def hasFailures(self):
+        return self.__failures

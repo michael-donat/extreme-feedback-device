@@ -2,6 +2,10 @@ __author__ = 'thornag'
 
 import unittest, ConfigParser
 
+import sys
+
+sys.path.append("./../src")
+
 from controller import Controller
 
 
@@ -13,7 +17,7 @@ class TestController(unittest.TestCase):
         config.set('Time', 'onAt', '08:00')
         config.set('Time', 'offAt', '20:00')
 
-        controller = Controller(config)
+        controller = Controller(config, None, None)
 
         self.assertFalse(controller.shouldBeOnAt('21:00'))
         self.assertFalse(controller.shouldBeOnAt('20:01'))
